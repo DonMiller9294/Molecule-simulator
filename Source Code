@@ -1,0 +1,69 @@
+import pygame
+import random
+import math
+
+# Constants
+WIDTH, HEIGHT = 800, 600
+NUM_PARTICLES = 100
+PARTICLE_RADIUS = 5
+PARTICLE_COLOR = (255, 0, 0)
+BG_COLOR = (255, 255, 255)
+SCREEN_CENTER = (WIDTH // 2, HEIGHT // 2)
+FPS = 60
+
+# Initialize Pygame
+pygame.init()
+screen = pygame.display.set_mode((WIDTH, HEIGHT))
+pygame.display.set_caption("Molecular Dynamics Simulation")
+
+# Particle class
+class Particle:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+        self.vx = random.uniform(-1, 1)
+        self.vy = random.uniform(-1, 1)
+
+    def move(self):
+        self.x += self.vx
+        self.y += self.vy
+
+    def draw(self):
+        pygame.draw.circle(screen, PARTICLE_COLOR, (int(self.x), int(self.y)), PARTICLE_RADIUS)
+
+# Create particles
+particles = [Particle(random.uniform(0, WIDTH), random.uniform(0, HEIGHT)) for _ in range(NUM_PARTICLES)]
+
+# Main loop
+clock = pygame.time.Clock()
+running = True
+
+while running:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+
+    # Clear the screen
+    screen.fill(BG_COLOR)
+
+    # Update and draw particles
+    for particle in particles:
+        particle.move()
+        particle.draw()
+
+        # Wrap particles around the screen
+        if particle.x < 0:
+            particle.x = WIDTH
+        elif particle.x > WIDTH:
+            particle.x = 0
+        if particle.y < 0:
+            particle.y = HEIGHT
+        elif particle.y > HEIGHT:
+            particle.y = 0
+
+    # Update the screen
+    pygame.display.flip()
+    clock.tick(FPS)
+
+# Quit Pygame
+pygame.quit()
