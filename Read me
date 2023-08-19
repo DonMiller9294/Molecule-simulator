@@ -1,0 +1,28 @@
+# Molecular Dynamics Simulation
+
+A simple 2D particle simulation using Pygame. This project serves as a starting point for simulating the movement of particles in a 2D space, which can be extended for more complex simulations of gases, liquids, or solids.
+
+
+## Table of Contents
+
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
+
+## Getting Started
+
+### Prerequisites
+
+Before you begin, ensure you have met the following requirements:
+
+- Python (>=3.6) installed.
+- Pygame library installed. You can install it using pip:
+
+  ```bash
+  pip install pygame
+
+  created by 
+  Don Miller
